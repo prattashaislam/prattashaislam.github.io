@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Currently, MS in Economics Student at the University of Texas at Dallas, TX, USA. Looking forward to becoming a successful development practitioner in the future."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Prattasha Nawar Islam",
+    "section": "",
+    "text": "par(family=\"sans\")\nplot(iris, pch=20, cex=.75, col=\"steelblue\"\n)"
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "No publications yet"
+  }
+]
