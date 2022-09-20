@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -58,7 +60,37 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -98,61 +130,205 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Assignments</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Assignments">Assignments <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Code">Code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Visuals">Visuals <span class="quarto-category-count">(2)</span></div><div class="category" data-category="analysis">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="code">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Assignments</h1>
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="R,Code,Visuals,Assignments" data-listing-date-sort="1663131600000" data-listing-file-modified-sort="1663686339964" data-listing-reading-time-sort="3.02">
+<div class="thumbnail">
+<p><a href="./posts/Assignment 02/index.html"> <img src="./posts/Assignment 02/image.jpg" class="thumnail-image"> </a></p>
 </div>
+<div class="body">
+<a href="./posts/Assignment 02/index.html">
+<h3 class="no-anchor listing-title">
+Assignment 02
+</h3>
+<div class="listing-subtitle">
 
-
-
-<div class="quarto-title-meta">
-
-    
-    
-  </div>
-  
-
-</header>
-
-<p><strong>Assignment 1</strong></p>
-<p><strong>Part 1</strong></p>
-<p>Generative art is a form of art which is created using an autonomous system and algorithm through computer generated artwork. The art can be found in various forms like computer visuals, music and literature.</p>
-<p>Generative Art Examples:<br>
-<a href="https://katharinabrunner.de/generativeart/">Catherine Bruner Website</a> - Catherine Bruner, a data scientist, shows how a simple generative art is created step by step. She also has a tutorial site for generative arts using R. Her codes can also be found on her github page. The arts displayed below are all abstract.<br>
-<a href="https://katharinabrunner.de/2018/12/when-two-points-on-a-circle-form-a-line/">Catherine Bruner’s tutorial using R</a></p>
-<p><img src="CB%20g-art.png" class="img-fluid"><br>
-</p>
-<p><a href="http://markjstock.com/">Mark Stock’s Website</a> - Another generative artist, described how he created his series “FIELD” in his website. Artworks in this series were made using a algorithmic process and a very specific set of instructions. He describes the below piece as his reflection on the hierarchy of currents and eddies in the ocean and their little understood effect on climate change.</p>
-<p><img src="MS%20g-art.jpg" class="img-fluid" width="394"><br>
-</p>
-<p><a href="http://www.galaxykate.com/apps/Prototypes/LTrees/">Kate Compton’s Flowers</a> - This is just another simple and interactive piece of generative art, that is really cool to look at!</p>
-<p><strong>Part 2</strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Fall_powderblue.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Fall.R plot in powderblue color</figcaption><p></p>
-</figure>
 </div>
-<p><strong>Part 3</strong></p>
-<p>Critique on a Chart from BBC article:</p>
-<p><img src="images/Chart%20Critique-01.webp" class="img-fluid"></p>
-<p><a href="https://www.bbc.com/news/science-environment-46384067">BBC article link</a></p>
-<p>Just at the first glance, the chart above looks impressive as it has a colorful set of pattern for which the chart overall looks different than a regular line or bar chart. The color selection for the continents are very much appropriate as they are easy to distinguish from each other. By looking at the trend, it can be said that the relationship between the rates of population growth and climate change vulnerability is strong.</p>
-<p>However, without the disclaimer, “Circle size represents current population” beside the source of the chart, it would be difficult to interpret the different sizes of the circles. It is also difficult to understand that the different circles represent different cities of their respective continents without actually reading the article. Most of the data points are extremely cluttered and overlapped within each other, hence it looks complex to interpret.</p>
-<p>Looking at the <a href="https://www.maplecroft.com/insights/analysis/84-of-worlds-fastest-growing-cities-face-extreme-climate-change-risks/">original article from the source</a> of the chart, it becomes easy to figure out some room for improvements. The chart could be improved by including more divisions in the climate change vulnerability index (x -axis) to show a less cluttered pattern. For instance, dividing the climate change vulnerability into groups like low risk, medium risk, high risk etc. It could also contain a size guide or comparison for the circles. The population growth could account for negative growths as well.</p>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
+Code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Visuals'); return false;">
+Visuals
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Assignments'); return false;">
+Assignments
+</div>
+</div>
+<a href="./posts/Assignment 02/index.html">
+<div class="listing-description">
+<strong>Assignment 2</strong>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Assignment 02/index.html">
+<div class="listing-date">
+Sep 14, 2022
+</div>
+<div class="listing-author">
+Prattasha Nawar Islam
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="R,Code,Visuals,Assignments" data-listing-date-sort="1663045200000" data-listing-file-modified-sort="1663201198328" data-listing-reading-time-sort="2.03">
+<div class="thumbnail">
+<p><a href="./posts/Assignment 01/index.html"> <img src="./posts/Assignment 01/CB g-art.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/Assignment 01/index.html">
+<h3 class="no-anchor listing-title">
+Assignment 01
+</h3>
+<div class="listing-subtitle">
 
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Code'); return false;">
+Code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Visuals'); return false;">
+Visuals
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Assignments'); return false;">
+Assignments
+</div>
+</div>
+<a href="./posts/Assignment 01/index.html">
+<div class="listing-description">
+<strong>Assignment 1</strong>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Assignment 01/index.html">
+<div class="listing-date">
+Sep 13, 2022
+</div>
+<div class="listing-author">
+Prattasha Nawar Islam
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="news,code,analysis" data-listing-date-sort="1662958800000" data-listing-file-modified-sort="1663201465931" data-listing-reading-time-sort="0.035">
+<div class="thumbnail">
+<a href="./posts/post-with-code/index.html">
+<div class="thumbnail-image">
 
+</div>
+</a><p><a href="./posts/post-with-code/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./posts/post-with-code/index.html">
+<h3 class="no-anchor listing-title">
+Post With Code
+</h3>
+<div class="listing-subtitle">
 
-</main> <!-- /main -->
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
+news
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
+code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
+analysis
+</div>
+</div>
+<a href="./posts/post-with-code/index.html">
+<div class="listing-description">
+This is a post with executable code.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/post-with-code/index.html">
+<div class="listing-date">
+Sep 12, 2022
+</div>
+<div class="listing-author">
+Prattasha Nawar Islam
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1662958800000" data-listing-file-modified-sort="1663201580936" data-listing-reading-time-sort="0.05">
+<div class="thumbnail">
+<p><a href="./posts/welcome/index.html"> <img src="./posts/welcome/thumbnail.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/welcome/index.html">
+<h3 class="no-anchor listing-title">
+Welcome To My Blog
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+This is the first post in a Quarto blog. Welcome!
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/welcome/index.html">
+<div class="listing-date">
+Sep 12, 2022
+</div>
+<div class="listing-author">
+Prattasha Nawar Islam
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
