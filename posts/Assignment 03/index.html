@@ -240,11 +240,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><strong>ANSCOMBE Regression Models Comparison:</strong></p>
-<p>All four regression models below shows a p-value of 0.00217, which is less than the commonly used significance level of 0.05. This shows that all of these models are statistically significant. All the models have the same value of 3.00 for their intercept coefficient and the same value of 0.5 for the coefficients of x1, x2, x3, and x4. The models have the same standard errors for the variables, same t-stat values and same adjusted R squared values. A multiple R squared value of 0.66 indicates that there is a fairly strong relationship between the independent and dependent variables. All the other values from the models are also the same on average which shows that the variables have the same relationship between them.</p>
+<p>All four regression models below shows a p-value of 0.00217, which is less than the commonly used significance level of 0.05. This shows that all of these models are statistically significant. All the models have the same value of 3.00 for their intercept coefficient and the same value of 0.5 for the coefficients of x1, x2, x3, and x4. The models have the same standard errors for the variables, same t-stat values and same adjusted R squared values. A multiple R squared value of 0.66 indicates that there is a fairly strong relationship between the independent and dependent variables. All the other values from the models are also the same on average which shows that the variables have the same relationship between them. The fitted lines in the plots also suggests that all four models have the same relationship.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -353,7 +353,7 @@ F-statistic:    18 on 1 and 9 DF,  p-value: 0.002165</code></pre>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
@@ -361,7 +361,7 @@ F-statistic:    18 on 1 and 9 DF,  p-value: 0.002165</code></pre>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
@@ -369,7 +369,7 @@ F-statistic:    18 on 1 and 9 DF,  p-value: 0.002165</code></pre>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
@@ -377,7 +377,7 @@ F-statistic:    18 on 1 and 9 DF,  p-value: 0.002165</code></pre>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -480,7 +480,7 @@ x4          0.4999091  0.1178189 4.243028 0.002164602</code></pre>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Anscombe's 4 Regression data sets"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
@@ -504,7 +504,7 @@ x4          0.4999091  0.1178189 4.243028 0.002164602</code></pre>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Plotting multiple lines to one graph.</p>
@@ -523,7 +523,7 @@ x4          0.4999091  0.1178189 4.243028 0.002164602</code></pre>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><strong>Using ggplot2 package to plot:</strong></p>
@@ -534,33 +534,23 @@ x4          0.4999091  0.1178189 4.243028 0.002164602</code></pre>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyverse' was built under R version 4.1.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>-- Attaching packages --------------------------------------- tidyverse 1.3.2 --</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>v ggplot2 3.3.6     v purrr   0.3.4
-v tibble  3.1.6     v dplyr   1.0.7
-v tidyr   1.1.4     v stringr 1.4.0
-v readr   2.1.1     v forcats 0.5.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.1.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>-- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Plotting regression models using ggplot2 package.</p>
@@ -568,51 +558,51 @@ x dplyr::lag()    masks stats::lag()</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x1, y1)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x1, y1)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x2, y2)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x3, y3)) <span class="sc">+</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x2, y2)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x4, y4)) <span class="sc">+</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x3, y3)) <span class="sc">+</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x4, y4)) <span class="sc">+</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-4.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -770,153 +760,153 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Assignment 03"</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Prattasha Nawar Islam"</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2022-09-20"</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [R, Code, Visuals, Assignments]</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "lm charts"</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>**Assignment 3**</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Anscombe (1973) Quartlet</span></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(anscombe)  <span class="co"># Load Anscombe's data</span></span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(anscombe) <span class="co"># View the data</span></span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anscombe)</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple version</span></span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>**ANSCOMBE Regression Models Comparison:**</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>All four regression models below shows a p-value of 0.00217, which is less than the commonly used significance level of 0.05. This shows that all of these models are statistically significant. All the models have the same value of 3.00 for their intercept coefficient and the same value of 0.5 for the coefficients of x1, x2, x3, and x4. The models have the same standard errors for the variables, same t-stat values and same adjusted R squared values. A multiple R squared value of 0.66 indicates that there is a fairly strong relationship between the independent and dependent variables. All the other values from the models are also the same on average which shows that the variables have the same relationship between them. The fitted lines in the plots also suggests that all four models have the same relationship.</span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Create four model objects</span></span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1, <span class="at">data=</span>anscombe)</span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y2 <span class="sc">~</span> x2, <span class="at">data=</span>anscombe)</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)</span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y3 <span class="sc">~</span> x3, <span class="at">data=</span>anscombe)</span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)</span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>lm4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y4 <span class="sc">~</span> x4, <span class="at">data=</span>anscombe)</span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm4)</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm1))</span>
-<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm2))</span>
-<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
-<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm3))</span>
-<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
-<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm4))</span>
-<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a><span class="do">## Fancy version (per help file)</span></span>
-<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a>ff <span class="ot">&lt;-</span> y <span class="sc">~</span> x</span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="fu">paste0</span>(<span class="st">"lm"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using for loop</span></span>
-<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a>  ff[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"y"</span>,<span class="st">"x"</span>), i), as.name)</span>
-<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a>  <span class="do">## or   ff[[2]] &lt;- as.name(paste0("y", i))</span></span>
-<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a>  <span class="do">##      ff[[3]] &lt;- as.name(paste0("x", i))</span></span>
-<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a>  mods[[i]] <span class="ot">&lt;-</span> lmi <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff, <span class="at">data =</span> anscombe)</span>
-<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">anova</span>(lmi))</span>
-<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(mods, coef)  <span class="co"># Note the use of this function</span></span>
-<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(mods, <span class="cf">function</span>(fm) <span class="fu">coef</span>(<span class="fu">summary</span>(fm)))</span>
-<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparing for the plots</span></span>
-<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fl">0.1</span><span class="sc">+</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma =</span>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
-<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-78"><a href="#cb41-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot charts using for loop</span></span>
-<span id="cb41-79"><a href="#cb41-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a>  ff[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"y"</span>,<span class="st">"x"</span>), i), as.name)</span>
-<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(ff, <span class="at">data =</span> anscombe, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">bg =</span> <span class="st">"orange"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
-<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">19</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">13</span>))</span>
-<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(mods[[i]], <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Anscombe's 4 Regression data sets"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb41-86"><a href="#cb41-86" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span>
-<span id="cb41-87"><a href="#cb41-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-88"><a href="#cb41-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-89"><a href="#cb41-89" aria-hidden="true" tabindex="-1"></a>**Fine-tuning and modifying the charts:**</span>
-<span id="cb41-90"><a href="#cb41-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-91"><a href="#cb41-91" aria-hidden="true" tabindex="-1"></a>Below code shows how the par function is used to modify the regression model plots. The mfrow argument in the par function is used to draw multiple graphs in the same window. And the bg argument is used to input a background color to the window.</span>
-<span id="cb41-92"><a href="#cb41-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-95"><a href="#cb41-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-96"><a href="#cb41-96" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb41-97"><a href="#cb41-97" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bg =</span> <span class="st">"powderblue"</span>)</span>
-<span id="cb41-98"><a href="#cb41-98" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
-<span id="cb41-99"><a href="#cb41-99" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm1))</span>
-<span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
-<span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm2))</span>
-<span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
-<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm3))</span>
-<span id="cb41-104"><a href="#cb41-104" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
-<span id="cb41-105"><a href="#cb41-105" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm4))</span>
-<span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-107"><a href="#cb41-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a>Plotting multiple lines to one graph.</span>
-<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-110"><a href="#cb41-110" aria-hidden="true" tabindex="-1"></a>The graph below looks messy but this is just to show how to plot multiple relationships in the same graph (how x1 in the anscombe dataset varies with y1, y2, y3, y4). Specifying the type="b" assigns a specific point symbol to each line and modifying the pch argument shows different signs for those symbols for each line. The size of the symbols depend on the cex value. Different colors are assigned to different lines using the col argument. The lwd argument specifies the thickness of the line.</span>
-<span id="cb41-111"><a href="#cb41-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-114"><a href="#cb41-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-115"><a href="#cb41-115" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y1, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">4</span>)                      </span>
-<span id="cb41-116"><a href="#cb41-116" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y2, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)               </span>
-<span id="cb41-117"><a href="#cb41-117" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y3, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">10</span>, <span class="at">cex =</span> <span class="fl">0.5</span>,  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">4</span>) </span>
-<span id="cb41-118"><a href="#cb41-118" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y4, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"orange"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)</span>
-<span id="cb41-119"><a href="#cb41-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-120"><a href="#cb41-120" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
-<span id="cb41-121"><a href="#cb41-121" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Line y1"</span>, <span class="st">"Line y2"</span>, <span class="st">"Line y3"</span>, <span class="st">"Line y4"</span>),</span>
-<span id="cb41-122"><a href="#cb41-122" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span>),</span>
-<span id="cb41-123"><a href="#cb41-123" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb41-124"><a href="#cb41-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-125"><a href="#cb41-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-126"><a href="#cb41-126" aria-hidden="true" tabindex="-1"></a>**Using ggplot2 package to plot:**</span>
-<span id="cb41-127"><a href="#cb41-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-128"><a href="#cb41-128" aria-hidden="true" tabindex="-1"></a>With the ggplot2 package, (under tidyverse), graphs can be created much easily with single line commands. The graph below simply shows the relationship between x1 and y1 with a line using geom_line and the points using geom_point.</span>
-<span id="cb41-129"><a href="#cb41-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-132"><a href="#cb41-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-133"><a href="#cb41-133" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb41-134"><a href="#cb41-134" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
-<span id="cb41-135"><a href="#cb41-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-136"><a href="#cb41-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb41-137"><a href="#cb41-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-138"><a href="#cb41-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-139"><a href="#cb41-139" aria-hidden="true" tabindex="-1"></a>Plotting regression models using ggplot2 package.</span>
-<span id="cb41-140"><a href="#cb41-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-141"><a href="#cb41-141" aria-hidden="true" tabindex="-1"></a>The regression models in the anscombe dataset, which were done previously, is now plotted below using the ggplot2 package. Here, specifying the method as lm in the geom_smooth argument displays the regression line. The se=TRUE argument displays the standard error lines. Keeping it at FALSE would simply hide it.</span>
-<span id="cb41-142"><a href="#cb41-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-145"><a href="#cb41-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-146"><a href="#cb41-146" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x1, y1)) <span class="sc">+</span></span>
-<span id="cb41-147"><a href="#cb41-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-148"><a href="#cb41-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
-<span id="cb41-149"><a href="#cb41-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-150"><a href="#cb41-150" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x2, y2)) <span class="sc">+</span></span>
-<span id="cb41-151"><a href="#cb41-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
-<span id="cb41-153"><a href="#cb41-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-154"><a href="#cb41-154" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x3, y3)) <span class="sc">+</span></span>
-<span id="cb41-155"><a href="#cb41-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-156"><a href="#cb41-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
-<span id="cb41-157"><a href="#cb41-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-158"><a href="#cb41-158" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x4, y4)) <span class="sc">+</span></span>
-<span id="cb41-159"><a href="#cb41-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-160"><a href="#cb41-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
-<span id="cb41-161"><a href="#cb41-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb37" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Assignment 03"</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Prattasha Nawar Islam"</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2022-09-20"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [R, Code, Visuals, Assignments]</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "lm charts"</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>**Assignment 3**</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Anscombe (1973) Quartlet</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(anscombe)  <span class="co"># Load Anscombe's data</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(anscombe) <span class="co"># View the data</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anscombe)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple version</span></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a>**ANSCOMBE Regression Models Comparison:**</span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a>All four regression models below shows a p-value of 0.00217, which is less than the commonly used significance level of 0.05. This shows that all of these models are statistically significant. All the models have the same value of 3.00 for their intercept coefficient and the same value of 0.5 for the coefficients of x1, x2, x3, and x4. The models have the same standard errors for the variables, same t-stat values and same adjusted R squared values. A multiple R squared value of 0.66 indicates that there is a fairly strong relationship between the independent and dependent variables. All the other values from the models are also the same on average which shows that the variables have the same relationship between them. The fitted lines in the plots also suggests that all four models have the same relationship.</span>
+<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Create four model objects</span></span>
+<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> x1, <span class="at">data=</span>anscombe)</span>
+<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span>
+<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y2 <span class="sc">~</span> x2, <span class="at">data=</span>anscombe)</span>
+<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)</span>
+<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y3 <span class="sc">~</span> x3, <span class="at">data=</span>anscombe)</span>
+<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)</span>
+<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a>lm4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y4 <span class="sc">~</span> x4, <span class="at">data=</span>anscombe)</span>
+<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm4)</span>
+<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm1))</span>
+<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
+<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm2))</span>
+<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
+<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm3))</span>
+<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm4))</span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-56"><a href="#cb37-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-57"><a href="#cb37-57" aria-hidden="true" tabindex="-1"></a><span class="do">## Fancy version (per help file)</span></span>
+<span id="cb37-58"><a href="#cb37-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-59"><a href="#cb37-59" aria-hidden="true" tabindex="-1"></a>ff <span class="ot">&lt;-</span> y <span class="sc">~</span> x</span>
+<span id="cb37-60"><a href="#cb37-60" aria-hidden="true" tabindex="-1"></a>mods <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="fu">paste0</span>(<span class="st">"lm"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span>
+<span id="cb37-61"><a href="#cb37-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using for loop</span></span>
+<span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>  ff[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"y"</span>,<span class="st">"x"</span>), i), as.name)</span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>  <span class="do">## or   ff[[2]] &lt;- as.name(paste0("y", i))</span></span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>  <span class="do">##      ff[[3]] &lt;- as.name(paste0("x", i))</span></span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>  mods[[i]] <span class="ot">&lt;-</span> lmi <span class="ot">&lt;-</span> <span class="fu">lm</span>(ff, <span class="at">data =</span> anscombe)</span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">anova</span>(lmi))</span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(mods, coef)  <span class="co"># Note the use of this function</span></span>
+<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(mods, <span class="cf">function</span>(fm) <span class="fu">coef</span>(<span class="fu">summary</span>(fm)))</span>
+<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparing for the plots</span></span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fl">0.1</span><span class="sc">+</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma =</span>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-78"><a href="#cb37-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot charts using for loop</span></span>
+<span id="cb37-79"><a href="#cb37-79" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a>  ff[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"y"</span>,<span class="st">"x"</span>), i), as.name)</span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(ff, <span class="at">data =</span> anscombe, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">bg =</span> <span class="st">"orange"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">19</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">13</span>))</span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(mods[[i]], <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Anscombe's 4 Regression data sets"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-89"><a href="#cb37-89" aria-hidden="true" tabindex="-1"></a>**Fine-tuning and modifying the charts:**</span>
+<span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>Below code shows how the par function is used to modify the regression model plots. The mfrow argument in the par function is used to draw multiple graphs in the same window. And the bg argument is used to input a background color to the window.</span>
+<span id="cb37-92"><a href="#cb37-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-95"><a href="#cb37-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-96"><a href="#cb37-96" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb37-97"><a href="#cb37-97" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bg =</span> <span class="st">"powderblue"</span>)</span>
+<span id="cb37-98"><a href="#cb37-98" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1,anscombe<span class="sc">$</span>y1)</span>
+<span id="cb37-99"><a href="#cb37-99" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm1))</span>
+<span id="cb37-100"><a href="#cb37-100" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x2,anscombe<span class="sc">$</span>y2)</span>
+<span id="cb37-101"><a href="#cb37-101" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm2))</span>
+<span id="cb37-102"><a href="#cb37-102" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x3,anscombe<span class="sc">$</span>y3)</span>
+<span id="cb37-103"><a href="#cb37-103" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm3))</span>
+<span id="cb37-104"><a href="#cb37-104" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x4,anscombe<span class="sc">$</span>y4)</span>
+<span id="cb37-105"><a href="#cb37-105" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">coefficients</span>(lm4))</span>
+<span id="cb37-106"><a href="#cb37-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-107"><a href="#cb37-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-108"><a href="#cb37-108" aria-hidden="true" tabindex="-1"></a>Plotting multiple lines to one graph.</span>
+<span id="cb37-109"><a href="#cb37-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-110"><a href="#cb37-110" aria-hidden="true" tabindex="-1"></a>The graph below looks messy but this is just to show how to plot multiple relationships in the same graph (how x1 in the anscombe dataset varies with y1, y2, y3, y4). Specifying the type="b" assigns a specific point symbol to each line and modifying the pch argument shows different signs for those symbols for each line. The size of the symbols depend on the cex value. Different colors are assigned to different lines using the col argument. The lwd argument specifies the thickness of the line.</span>
+<span id="cb37-111"><a href="#cb37-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-114"><a href="#cb37-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-115"><a href="#cb37-115" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y1, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">4</span>)                      </span>
+<span id="cb37-116"><a href="#cb37-116" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y2, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">15</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)               </span>
+<span id="cb37-117"><a href="#cb37-117" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y3, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">10</span>, <span class="at">cex =</span> <span class="fl">0.5</span>,  <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">4</span>) </span>
+<span id="cb37-118"><a href="#cb37-118" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>y4, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"orange"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb37-119"><a href="#cb37-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-120"><a href="#cb37-120" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb37-121"><a href="#cb37-121" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Line y1"</span>, <span class="st">"Line y2"</span>, <span class="st">"Line y3"</span>, <span class="st">"Line y4"</span>),</span>
+<span id="cb37-122"><a href="#cb37-122" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span>),</span>
+<span id="cb37-123"><a href="#cb37-123" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb37-124"><a href="#cb37-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-125"><a href="#cb37-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-126"><a href="#cb37-126" aria-hidden="true" tabindex="-1"></a>**Using ggplot2 package to plot:**</span>
+<span id="cb37-127"><a href="#cb37-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-128"><a href="#cb37-128" aria-hidden="true" tabindex="-1"></a>With the ggplot2 package, (under tidyverse), graphs can be created much easily with single line commands. The graph below simply shows the relationship between x1 and y1 with a line using geom_line and the points using geom_point.</span>
+<span id="cb37-129"><a href="#cb37-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-132"><a href="#cb37-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-133"><a href="#cb37-133" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb37-134"><a href="#cb37-134" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1)) <span class="sc">+</span></span>
+<span id="cb37-135"><a href="#cb37-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-136"><a href="#cb37-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb37-137"><a href="#cb37-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-138"><a href="#cb37-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-139"><a href="#cb37-139" aria-hidden="true" tabindex="-1"></a>Plotting regression models using ggplot2 package.</span>
+<span id="cb37-140"><a href="#cb37-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-141"><a href="#cb37-141" aria-hidden="true" tabindex="-1"></a>The regression models in the anscombe dataset, which were done previously, is now plotted below using the ggplot2 package. Here, specifying the method as lm in the geom_smooth argument displays the regression line. The se=TRUE argument displays the standard error lines. Keeping it at FALSE would simply hide it.</span>
+<span id="cb37-142"><a href="#cb37-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-145"><a href="#cb37-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-146"><a href="#cb37-146" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x1, y1)) <span class="sc">+</span></span>
+<span id="cb37-147"><a href="#cb37-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-148"><a href="#cb37-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
+<span id="cb37-149"><a href="#cb37-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-150"><a href="#cb37-150" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x2, y2)) <span class="sc">+</span></span>
+<span id="cb37-151"><a href="#cb37-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-152"><a href="#cb37-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
+<span id="cb37-153"><a href="#cb37-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-154"><a href="#cb37-154" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x3, y3)) <span class="sc">+</span></span>
+<span id="cb37-155"><a href="#cb37-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-156"><a href="#cb37-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
+<span id="cb37-157"><a href="#cb37-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-158"><a href="#cb37-158" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe,<span class="fu">aes</span>(x4, y4)) <span class="sc">+</span></span>
+<span id="cb37-159"><a href="#cb37-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-160"><a href="#cb37-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">se=</span><span class="cn">TRUE</span>) </span>
+<span id="cb37-161"><a href="#cb37-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
