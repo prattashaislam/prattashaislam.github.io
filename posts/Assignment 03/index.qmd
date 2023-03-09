@@ -1,0 +1,148 @@
+---
+title: "Assignment 03"
+author: "Prattasha Nawar Islam"
+date: "2022-09-20"
+categories: [R, Code, Visuals, Assignments]
+image: "lm charts"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+---
+
+**Assignment 3**
+
+```{r}
+
+## Anscombe (1973) Quartlet
+
+data(anscombe)  # Load Anscombe's data
+View(anscombe) # View the data
+summary(anscombe)
+
+## Simple version
+plot(anscombe$x1,anscombe$y1)
+```
+
+**ANSCOMBE Regression Models Comparison:**
+
+All four regression models below shows a p-value of 0.00217, which is less than the commonly used significance level of 0.05. This shows that all of these models are statistically significant. All the models have the same value of 3.00 for their intercept coefficient and the same value of 0.5 for the coefficients of x1, x2, x3, and x4. The models have the same standard errors for the variables, same t-stat values and same adjusted R squared values. A multiple R squared value of 0.66 indicates that there is a fairly strong relationship between the independent and dependent variables. All the other values from the models are also the same on average which shows that the variables have the same relationship between them. The fitted lines in the plots also suggests that all four models have the same relationship.
+
+```{r}
+# Create four model objects
+lm1 <- lm(y1 ~ x1, data=anscombe)
+summary(lm1)
+lm2 <- lm(y2 ~ x2, data=anscombe)
+summary(lm2)
+lm3 <- lm(y3 ~ x3, data=anscombe)
+summary(lm3)
+lm4 <- lm(y4 ~ x4, data=anscombe)
+summary(lm4)
+plot(anscombe$x1,anscombe$y1)
+abline(coefficients(lm1))
+plot(anscombe$x2,anscombe$y2)
+abline(coefficients(lm2))
+plot(anscombe$x3,anscombe$y3)
+abline(coefficients(lm3))
+plot(anscombe$x4,anscombe$y4)
+abline(coefficients(lm4))
+```
+
+```{r}
+## Fancy version (per help file)
+
+ff <- y ~ x
+mods <- setNames(as.list(1:4), paste0("lm", 1:4))
+
+# Plot using for loop
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  ## or   ff[[2]] <- as.name(paste0("y", i))
+  ##      ff[[3]] <- as.name(paste0("x", i))
+  mods[[i]] <- lmi <- lm(ff, data = anscombe)
+  print(anova(lmi))
+}
+
+sapply(mods, coef)  # Note the use of this function
+lapply(mods, function(fm) coef(summary(fm)))
+
+
+# Preparing for the plots
+op <- par(mfrow = c(2, 2), mar = 0.1+c(4,4,1,1), oma =  c(0, 0, 2, 0))
+
+# Plot charts using for loop
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  plot(ff, data = anscombe, col = "red", pch = 21, bg = "orange", cex = 1.2,
+       xlim = c(3, 19), ylim = c(3, 13))
+  abline(mods[[i]], col = "blue")
+}
+mtext("Anscombe's 4 Regression data sets", outer = TRUE, cex = 1.5)
+par(op)
+```
+
+**Fine-tuning and modifying the charts:**
+
+Below code shows how the par function is used to modify the regression model plots. The mfrow argument in the par function is used to draw multiple graphs in the same window. And the bg argument is used to input a background color to the window.
+
+```{r}
+par(mfrow = c(2, 2))
+par(bg = "powderblue")
+plot(anscombe$x1,anscombe$y1)
+abline(coefficients(lm1))
+plot(anscombe$x2,anscombe$y2)
+abline(coefficients(lm2))
+plot(anscombe$x3,anscombe$y3)
+abline(coefficients(lm3))
+plot(anscombe$x4,anscombe$y4)
+abline(coefficients(lm4))
+```
+
+Plotting multiple lines to one graph.
+
+The graph below looks messy but this is just to show how to plot multiple relationships in the same graph (how x1 in the anscombe dataset varies with y1, y2, y3, y4). Specifying the type="b" assigns a specific point symbol to each line and modifying the pch argument shows different signs for those symbols for each line. The size of the symbols depend on the cex value. Different colors are assigned to different lines using the col argument. The lwd argument specifies the thickness of the line.
+
+```{r}
+plot(anscombe$x1, anscombe$y1, type = "b", pch = 16, cex = 0.5, lwd = 4)                      
+lines(anscombe$x1, anscombe$y2, type = "b", pch = 15, cex = 0.5, col = "red", lwd = 4)               
+lines(anscombe$x1, anscombe$y3, type = "b", pch = 10, cex = 0.5,  col = "blue", lwd = 4) 
+lines(anscombe$x1, anscombe$y4, type = "b", pch = 8, cex = 0.5, col = "orange", lwd = 4)
+
+legend("topleft",
+       legend = c("Line y1", "Line y2", "Line y3", "Line y4"),
+       col = c("black", "red", "blue", "orange"),
+       pch = c(16, 15, 10, 8))
+```
+
+**Using ggplot2 package to plot:**
+
+With the ggplot2 package, (under tidyverse), graphs can be created much easily with single line commands. The graph below simply shows the relationship between x1 and y1 with a line using geom_line and the points using geom_point.
+
+```{r}
+library("tidyverse")
+ggplot(anscombe, aes(x = x1, y = y1)) +
+  geom_point() +
+  geom_line()
+```
+
+Plotting regression models using ggplot2 package.
+
+The regression models in the anscombe dataset, which were done previously, is now plotted below using the ggplot2 package. Here, specifying the method as lm in the geom_smooth argument displays the regression line. The se=TRUE argument displays the standard error lines. Keeping it at FALSE would simply hide it.
+
+```{r}
+ggplot(anscombe,aes(x1, y1)) +
+  geom_point() +
+  geom_smooth(method='lm', se=TRUE) 
+
+ggplot(anscombe,aes(x2, y2)) +
+  geom_point() +
+  geom_smooth(method='lm', se=TRUE) 
+
+ggplot(anscombe,aes(x3, y3)) +
+  geom_point() +
+  geom_smooth(method='lm', se=TRUE) 
+
+ggplot(anscombe,aes(x4, y4)) +
+  geom_point() +
+  geom_smooth(method='lm', se=TRUE) 
+```
