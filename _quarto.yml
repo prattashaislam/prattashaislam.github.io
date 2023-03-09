@@ -1,0 +1,29 @@
+project:
+ type: website
+
+website:
+ title: "prattashaislam.github.io"
+ navbar:
+  left:
+    - href: index.qmd
+      text: Home
+    - href: about.qmd
+      text: About
+    - href: Prattasha Nawar Islam_Resume_UTD.pdf
+      text: Resume
+    - href: assignments.qmd
+      text: Assignments
+    - href: Final Project Paper.pdf
+      text: Data Visualization Final Project Paper
+    - href: Info Management_Proposal Presentation.pdf
+      text: Info Management Proposal Presentation
+    
+
+format:
+  html:
+    theme: lux
+    css: styles.css
+    toc: true
+
+editor: visual
+

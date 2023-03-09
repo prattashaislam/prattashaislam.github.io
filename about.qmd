@@ -1,0 +1,6 @@
+---
+title: "About"
+editor: visual
+---
+
+Currently, MS in Economics Student at the University of Texas at Dallas, TX, USA. Looking forward to becoming a successful development practitioner in the future.
