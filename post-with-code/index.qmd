@@ -1,0 +1,12 @@
+---
+title: "Post With Code"
+author: "Prattasha Nawar Islam"
+date: "2022-09-12"
+categories: [news, code, analysis]
+---
+
+This is a test post.
+
+```{r}
+1 + 1
+```

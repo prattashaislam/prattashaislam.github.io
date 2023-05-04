@@ -1,0 +1,53 @@
+---
+title: "Assignment 10"
+author: "Prattasha Nawar Islam"
+date: "2022-11-29"
+categories: [Code, R, Plots, Assignment]
+image: "plot.jpg"
+draft: false
+format:
+  html:
+    code-fold: true
+    code-tools: true
+execute:
+  echo: false
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Data Colloquium
+
+## 1.
+
+```{r Graph1}
+#| warning: false
+#| fig-cap: ""
+
+```
+
+``` yaml
+```
+
+## 2.
+
+```{r Graph2}
+#| warning: false
+#| fig-cap: ""
+
+```
+
+``` yaml
+```
+
+## 3.
+
+```{r}
+#| warning: false
+#| fig-cap: ""
+
+```
+
+``` yaml
+```
+
+## Synergy Report

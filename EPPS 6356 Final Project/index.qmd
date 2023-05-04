@@ -1,0 +1,1527 @@
+---
+title: "EPPS 6356 Final Project"
+author: "By Prattasha, Bel, Kaitlyn, and Leonardo"
+date: "2022-12-06"
+categories: [R, Code, Blog, Project]
+image: "image.png"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-copy: true
+---
+
+[Link to Final Project Paper](LeonardAyala_Final Paper_12-8-2022.pdf)
+
+```{r, out.width="0.9\\linewidth", include=TRUE, fig.align="center", fig.cap=c("Final Project Presenation"), echo=FALSE}
+knitr::include_graphics("Presentation1.pdf")
+```
+
+[Link to Presentation](Presentation1.pdf)
+
+```{r setup1 Climate}
+#| echo: false
+#| warning: false
+#| output: false
+
+# clear memory
+rm(list=ls())
+
+#Tidyverse to use pipe operation
+library(tidyverse)
+
+#Import data
+climate <- read.csv("climate.csv")
+conflict <- read.csv("conflict.csv")
+
+
+# Clean Climate Data ------------------------------------------------------
+
+#Make the Indicator variable shorter 
+climate$Indicator[grepl("Drought",climate$Indicator)]<-"Drought"
+climate$Indicator[grepl("Extreme temperature",climate$Indicator)]<-"Extreme.temp"
+climate$Indicator[grepl("Flood",climate$Indicator)]<-"Flood"
+climate$Indicator[grepl("Landslide",climate$Indicator)]<-"Landslide"
+climate$Indicator[grepl("Storm",climate$Indicator)]<-"Storm"
+climate$Indicator[grepl("Wildfire",climate$Indicator)]<-"Wildfire"
+climate$Indicator[grepl("TOTAL",climate$Indicator)]<-"TOTAL"
+
+climate$Country[grepl("Ethiopia",climate$Country)]<-"Ethiopia"
+climate$Country[grepl("South Sudan",climate$Country)]<-"South Sudan"
+
+# Filter columns
+cli.ss <- climate%>%
+  filter(Country=="South Sudan")%>%
+  select(-1, -2, -3, -5, -6, -7)
+
+cli.cam <- climate%>%
+  filter(Country=="Cameroon")%>%
+  select(-1, -2, -3, -5, -6, -7)
+
+cli.al <- climate%>%
+  filter(Country=="Algeria")%>%
+  select(-1, -2, -3, -5, -6, -7)
+
+cli.eth <- climate%>%
+  filter(Country=="Ethiopia")%>%
+  select(-1, -2, -3, -5, -6, -7)
+
+#Transpose time dataframe
+cli.ss.t <- t(cli.ss)
+cli.cam.t <- t(cli.cam)
+cli.al.t <- t(cli.al)
+cli.eth.t <- t(cli.eth)
+
+# Create a function that makes the first observation the header
+header.true <- function(df) {
+  names(df) <- as.character(unlist(df[1,]))
+  df[-1,]
+}
+
+#Apply header, and convert the transposed data to dataframe
+cli.ss.t <- cli.ss.t|>
+  data.frame()|>
+  header.true()
+
+cli.cam.t <- cli.cam.t|>
+  data.frame()|>
+  header.true()
+
+cli.al.t <- cli.al.t|>
+  data.frame()|>
+  header.true()
+
+cli.eth.t <- cli.eth.t|>
+  data.frame()|>
+  header.true()
+
+#Add a date column back
+cli.ss.t$Date <- seq(from = 1980, to = 2021)
+cli.cam.t$Date <- seq(from = 1980, to = 2021)
+cli.al.t$Date <- seq(from = 1980, to = 2021)
+cli.eth.t$Date <- seq(from = 1980, to = 2021)
+
+# Replace NA with 0
+cli.ss.t[is.na(cli.ss.t)] <- 0
+cli.cam.t[is.na(cli.cam.t)] <- 0
+cli.al.t[is.na(cli.al.t)] <- 0
+cli.eth.t[is.na(cli.eth.t)] <- 0
+
+#Create Time Series and Replace NA with 0
+cli.ss.time <- ts(cli.ss.t, start=c(1980,1),end=c(2021,1),frequency=1)
+cli.cam.time <- ts(cli.cam.t, start=c(1980,1),end=c(2021,1),frequency=1)
+cli.al.time <- ts(cli.al.t, start=c(1980,1),end=c(2021,1),frequency=1)
+cli.eth.time <- ts(cli.eth.t, start=c(1980,1),end=c(2021,1),frequency=1)
+
+# Create de-aggregated climate data -----------------------------------------------
+
+# data.table::update_dev_pkg()
+library(data.table)
+
+# Drop total column
+cli.ss.t <- cli.ss.t%>%
+  select(-TOTAL)
+cli.cam.t <- cli.cam.t%>%
+  select(-TOTAL)
+cli.al.t <- cli.al.t%>%
+  select(-TOTAL)
+cli.eth.t <- cli.eth.t%>%
+  select(-TOTAL)
+
+# Transform data with melt
+ss <- melt( setDT(cli.ss.t), id.vars = "Date", variable.name = "Disaster" )
+ss[ rep(seq(.N), value), !"value"]
+
+cam <- melt( setDT(cli.cam.t), id.vars = "Date", variable.name = "Disaster" )
+cam[ rep(seq(.N), value), !"value"]
+
+al <- melt( setDT(cli.al.t), id.vars = "Date", variable.name = "Disaster" )
+al[ rep(seq(.N), value), !"value"]
+
+eth <- melt( setDT(cli.eth.t), id.vars = "Date", variable.name = "Disaster" )
+eth[ rep(seq(.N), value), !"value"]
+
+# Make all values integers
+ss$value<-strtoi(ss$value)
+cam$value<-strtoi(cam$value)
+al$value<-strtoi(al$value)
+eth$value<-strtoi(eth$value)
+
+```
+
+```{r areaplots}
+#| warning: false
+
+# Visualization with area plots*** -------------------------------------------
+
+### ggplot geom_area
+# Go to Create de-aggregated data
+# Uncomment drop TOTAL
+library(ggplot2)
+cli.ss.plot <- ggplot(ss, aes(x=ss$Date, y=ss$value, fill=Disaster)) +
+  geom_area(alpha=0.3)+
+  xlim(2005, 2023)+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in South Sudan")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  xlab("Year") + ylab("Number of Disasters")+
+  scale_fill_manual(values = c("Drought" = "goldenrod1",
+                               "Flood"="blue",
+                               "Wildfire"="orangered3",
+                               "Storm"="palevioletred3",
+                               "Landslide"="darkgreen",
+                               "Extreme.temp"="saddlebrown")) 
+cli.ss.plot
+
+cli.cam.plot <- ggplot(cam, aes(x=Date, y=value, fill=Disaster)) +
+  geom_area(alpha=0.3)+
+  xlim(1950,2022)+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Cameroon")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  xlab("Year") + ylab("Number of Disasters")+
+  scale_fill_manual(values = c("Drought" = "goldenrod1",
+                               "Flood"="blue",
+                               "Wildfire"="orangered3",
+                               "Storm"="palevioletred3",
+                               "Landslide"="darkgreen",
+                               "Extreme.temp"="saddlebrown")) 
+cli.cam.plot
+
+cli.al.plot <- ggplot(al, aes(x=Date, y=value, fill=Disaster)) +
+  geom_area(alpha=0.3)+
+  xlim(1950,2023)+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Algeria")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  xlab("Year") + ylab("Number of Disasters")+
+  scale_fill_manual(values = c("Drought" = "goldenrod1",
+                               "Flood"="blue",
+                               "Wildfire"="orangered3",
+                               "Storm"="palevioletred3",
+                               "Landslide"="darkgreen",
+                               "Extreme.temp"="saddlebrown")) 
+cli.al.plot
+
+cli.eth.plot <- ggplot(eth, aes(x=Date, y=value, fill=Disaster)) +
+  geom_area(alpha=0.3)+
+  xlim(1950,2023)+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Ethiopia")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  xlab("Year") + ylab("Number of Disasters")+
+  scale_fill_manual(values = c("Drought" = "goldenrod1",
+                               "Flood"="blue",
+                               "Wildfire"="orangered3",
+                               "Storm"="palevioletred3",
+                               "Landslide"="darkgreen",
+                               "Extreme.temp"="saddlebrown")) 
+
+cli.eth.plot
+
+```
+
+```{r setup2 Conflict}
+#| echo: false
+#| warning: false
+#| output: false
+
+# Conflict ----------------------------------------------------------------
+
+# Load data
+conflict <- read.csv("conflict.csv")
+
+
+# Grep Country ------------------------------------------------------------
+
+conflict$location[grepl("South Sudan",conflict$location)]<-"South Sudan"
+conflict$location[grepl("Cameroon",conflict$location)]<-"Cameroon"
+conflict$location[grepl("Algeria",conflict$location)]<-"Algeria"
+conflict$location[grepl("Ethiopia",conflict$location)]<-"Ethiopia"
+
+
+# filter columns, select countries  ----------------------------------------------------------
+
+conflict <- conflict|>
+  select(conflict_id, location, start_date, start_date2, ep_end_date,
+         intensity_level)|>
+  filter(location== c("South Sudan", "Cameroon",
+                      "Algeria", "Ethiopia"))
+
+# Select on rows with end date
+# conflict <- conflict[-which(conflict$ep_end_date == ""), ]
+
+# Assign end date to rows without end date
+conflict$ep_end_date[conflict$ep_end_date == ""] <- "2022-12-06"
+
+# Make conflict_id a factor
+conflict$conflict_id = factor(conflict$conflict_id)
+
+# Make intensity_level a factor
+conflict$intensity_level = factor(conflict$intensity_level)
+
+# POSIX -------------------------------------------------------------------
+
+### Change this date for each country!!! 
+conflict.time <- as.POSIXct(conflict$start_date,
+                            tz = "", origin="1954-01-01")
+
+
+# Graph
+
+library(ggplot2)
+library(scales)
+
+# Matrix with ggarrange ---------------------------------------------------------------
+
+# install.packages("ggpubr")
+library(ggplot2)
+library("ggpubr")
+theme_set(
+  theme_bw() +
+    theme(legend.position = "top")
+)
+
+```
+
+```{r South Sudan geom_segment}
+#| echo: false
+#| warning: false
+
+# geom_segment with South Sudan and ggarrange*** ------------------------------------------------------------
+
+library(scales)
+
+con <- conflict|>
+  filter(location=="South Sudan")
+
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "5 year", date_labels ="%Y",
+               limits = as.Date(c("2005-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in South Sudan",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.75, 0.7))
+
+con.seg
+```
+
+```{r South_Sudan_Combined, fig.width=5,fig.height=6}
+#| warning: false
+
+sudan <- ggarrange(cli.ss.plot, con.seg, 
+          heights = c(2, 1.5),
+          align = "v",
+          ncol = 1, nrow = 2)
+sudan
+```
+
+```{r Cameroon geom_segment}
+#| echo: false
+#| warning: false
+
+
+#   Cameroon -----------------------------------------------------------------------
+
+con <- conflict|>
+  filter(location=="Cameroon")
+
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y",
+               limits = as.Date(c("1950-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Cameroon",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ylab("\n\nConflict ID")+ xlab("Date")+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.5, 0.9))
+
+con.seg
+
+
+```
+
+```{r Cameroon_Combined, fig.width=5,fig.height=6}
+#| warning: false
+
+ggarrange(cli.cam.plot, con.seg, 
+          heights = c(1.5, 1.5),
+          align = "v",
+          ncol = 1, nrow = 2)
+
+```
+
+```{r Algeria_geom_segment}
+#| warning: false
+
+
+con <- conflict|>
+  filter(location=="Algeria")
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y",
+               limits = as.Date(c("1950-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Algeria",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ylab("\nConflict ID")+ xlab("Date")+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.3, 0.85))
+
+con.seg
+```
+
+```{r Algeria_Combined, fig.width=5,fig.height=6}
+#| warning: false
+
+ggarrange(cli.al.plot, con.seg, 
+          heights = c(1.5, 1.5),
+          align = "v",
+          ncol = 1, nrow = 2)
+
+```
+
+```{r Ethiopia geom_segment}
+#| echo: false
+#| warning: false
+
+con <- conflict|>
+  filter(location=="Ethiopia")
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y",
+               limits = as.Date(c("1950-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Ethiopiaia",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ylab("\nConflict ID")+ xlab("Date")+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.15, 0.7))
+
+
+con.seg
+
+
+```
+
+```{r Ethiopia_Combined, fig.width=5,fig.height=6}
+#| warning: false
+
+ggarrange(cli.eth.plot, con.seg, 
+          heights = c(1.2, 1.2),
+          align = "v",
+          ncol = 1, nrow = 2)
+
+```
+
+```{r setup3 Economical Impact}
+#| echo: false
+#| warning: false
+#| output: false
+
+
+# Economical Impact -------------------------------------------------------
+
+
+#Import data
+climate <- read.csv("natural-disasters_yearly.csv")
+
+# clean data --------------------------------------------------------------
+
+# Filter by the countries that was selected
+climate <- climate|>
+  filter(Entity=='South Sudan'|Entity== 'Cameroon'|
+           Entity=='Algeria'|Entity=='Ethiopia')
+
+# New df for Affected Rate ------------------------------------------------
+
+# Get column names with per capita affected
+total100k <- grep("Total.number.of.people.affected.*per.100.000", 
+                  colnames(climate), value=TRUE)
+
+total100k
+
+# Make new df
+affected_rate <- climate|>
+  select(c(total100k, Entity, Year))
+
+# Rename columns
+
+colnames(affected_rate)[grepl("drought",colnames(affected_rate))]<-"Drought"
+colnames(affected_rate)[grepl("extreme.temperature",colnames(affected_rate))]<-"Extreme.temp"
+colnames(affected_rate)[grepl("flood",colnames(affected_rate))]<-"Flood"
+colnames(affected_rate)[grepl("landslide",colnames(affected_rate))]<-"Landslide"
+colnames(affected_rate)[grepl("storm",colnames(affected_rate))]<-"Storm"
+colnames(affected_rate)[grepl("wildfire",colnames(affected_rate))]<-"Wildfire"
+colnames(affected_rate)[grepl("earthquakes",colnames(affected_rate))]<-"Earthquakes"
+colnames(affected_rate)[grepl("disaster",colnames(affected_rate))]<-"All_Disasters"
+colnames(affected_rate)[grepl("volcanic",colnames(affected_rate))]<-"Volcanic_Act"
+colnames(affected_rate)[grepl("movement",colnames(affected_rate))]<-"Mass_Movement"
+colnames(affected_rate)[grepl("fog",colnames(affected_rate))]<-"Fog"
+colnames(affected_rate)[grepl("glacial",colnames(affected_rate))]<-"Glacial_Lake_Ourtbust"
+
+# remove disaster columns that does not apply to countries selected
+affected_rate <- affected_rate|>
+  select(-Mass_Movement, -Fog, -Glacial_Lake_Ourtbust)
+
+#Turn affected rate to percentage
+affected_rate[,1:9] <- affected_rate[,1:9]/1000
+
+
+
+```
+
+```{r Disasters plots }
+#| warning: false
+#| fig-cap: "Disaster Plots" 
+#| fig-subcap:
+#|   - "Drought"
+#|   - "Flood"
+#|   - "Storm"
+#|   - "Extreme Temperature"
+#|   - "Landslide"
+#|   - "Wildfire"
+#| layout-ncol: 2
+#| layout-nrow: 6
+
+# Affected by Disasters plots ***---------------------------------------------
+
+Drought <-ggplot(data=affected_rate, aes(x=Year)) +
+  geom_bar(stat="identity", 
+           aes(y=Drought, fill = Entity))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  ylab("Percentage of people affected by Drought")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Drought")
+
+Drought
+
+Flood <-ggplot(data=affected_rate, aes(x=Year)) +
+  geom_bar(stat="identity", 
+           aes(y=Flood, fill = Entity))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  ylab("Percentage of people affected by Flood")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Flood")
+
+Flood
+
+Storm <-ggplot(data=affected_rate, aes(x=Year)) +
+  geom_bar(stat="identity", 
+           aes(y=Storm, fill = Entity))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  ylab("Percentage of people affected by Storm")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Storm")
+
+Storm
+
+ExTemp <-ggplot(data=affected_rate, aes(x=Year)) +
+  geom_bar(stat="identity", 
+           aes(y=Extreme.temp, fill = Entity))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  ylab("Percentage of people affected by Extreme Temperature")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Extreme Temperature")
+
+ExTemp
+
+Landslide <-ggplot(data=affected_rate, aes(x=Year)) +
+  geom_bar(stat="identity", 
+           aes(y=Landslide, fill = Entity))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  ylab("Percentage of people affected by Landslide")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Landslide")
+
+Landslide
+
+Wildfire <-ggplot(data=affected_rate, aes(x=Year)) +
+  geom_bar(stat="identity", 
+           aes(y=Wildfire, fill = Entity))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1))+
+  ylab("Percentage of people affected by Wildfire")+
+  scale_fill_brewer(palette = "Set2")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Wildfire")
+
+Wildfire
+
+
+
+
+```
+
+```{r Conflict intensity all countries}
+#| fig-cap: "Conflicts and their level of intensity" 
+
+#   Conflict segment for all countries *** -----------------------------------------------------------------------
+con.seg <- ggplot(conflict, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), y=location, 
+                   yend=location, color=intensity_level), size=5, alpha=0.5)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y")+
+  xlab("Year")+
+  ylab("Country")+
+  ggtitle("Conflicts and their level of intensity")+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))
+
+con.seg
+
+
+```
+
+```{r setup4 South Sudan}
+#| echo: false
+#| warning: false
+#| output: false
+
+
+# Filter by Country ---------------------------------------------------------
+
+ss <- affected_rate|>
+  filter(Entity=="South Sudan")
+
+cam <- affected_rate|>
+  filter(Entity=="Cameroon")
+
+al <- affected_rate|>
+  filter(Entity=="Algeria")
+
+eth <- affected_rate|>
+  filter(Entity=="Ethiopia")
+
+
+#   Combined Sudan -----------------------------------------------------------------------
+
+#       Assign South Sudan to df ---------------------------------------------------------------
+df <- ss
+
+# Replace NA with 0
+df[is.na(df)] <- 0
+
+
+#       Triangles for Drought ---------------------------------------------------
+
+
+
+#Create triangle tail with coordinate for Drought
+df$x_Drought <- df$Year+(as.numeric(df$Drought)/10)
+
+x <- c()
+
+for (n in 1:nrow(df)){
+  x <- c(x, df$Year[n])
+  x <- c(x, df$Year[n])
+  x <- c(x, df$x_Drought[n])
+}
+x
+
+y <- c()
+
+for (n in 1:nrow(df)){
+  y <- c(y, 0)
+  y <- c(y, df$Drought[n])
+  y <- c(y, 0)
+}
+y
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x,
+  y)
+
+df2 <- merge(df, positions, by = c("Year"))
+
+plot_drought <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Drought")+
+  ylim(0, 100)+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow',alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))
+
+plot_drought
+
+
+#       Triangles for Flood -----------------------------------------------------
+
+df$x_Flood <- df$Year+(as.numeric(df$Flood)/10)
+
+x2 <- c()
+
+for (n in 1:nrow(df)){
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$x_Flood[n])
+}
+x2
+
+y2 <- c()
+
+for (n in 1:nrow(df)){
+  y2 <- c(y2, 0)
+  y2 <- c(y2, df$Flood[n])
+  y2 <- c(y2, 0)
+}
+y2
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x2,
+  y2)
+
+df2 <- merge(df2, positions, by = c("Year"))
+
+plot_flood <- ggplot(df2, aes(x=Year))+
+  ylim(0, 100)+
+  ylab("Flood")+
+  geom_polygon(fill = 'orange', alpha = 0.7, 
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue',
+           alpha = 0.4,width = 0.7,
+           aes(x=Year, y=Flood))
+
+plot_flood
+
+
+#       Combined Triangles and Bar ------------------------------------------------------
+
+plot_combined <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Combined")+
+  ylim(0, 100)+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'orange', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood))
+
+plot_combined
+
+coeff_flood <- 2
+
+climate_ss <-
+  ggplot(df2, aes(x=Year))+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'lightblue', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2*coeff_flood))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood*coeff_flood))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1),
+                     # breaks = c(2,4,6),
+                     # Features of the first axis
+                     name = ("Percentage affected\nby Drought (Yellow)"),
+                     # Add a second axis and specify its features
+                     sec.axis = sec_axis(~./coeff_flood, 
+                                         name="Percentage affected\nby Flood (Blue)",
+                                         labels = scales::percent_format(scale = 1)))+
+  theme_bw()+
+  xlim(2005, 2023)+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+ggtitle("Economical impact from Natural Disasters\nin South Sudan")
+
+```
+
+```{r SS_Combined}
+#| warning: false
+
+climate_ss
+
+con <- conflict|>
+  filter(location=="South Sudan")
+
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "5 year", date_labels ="%Y",
+               limits = as.Date(c("2005-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in South Sudan",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.75, 0.7))
+
+con.seg
+
+ggarrange(climate_ss, con.seg,
+          align = "v",
+          heights = c(1.5, 1.5),
+          ncol = 1, nrow = 2)
+
+```
+
+```{r setup4 Cameroon}
+#| echo: false
+#| warning: false
+#| output: false
+
+
+#   Combined Cameroon-----------------------------------------------------------------------
+
+
+#       Assign Cameroon to df ---------------------------------------------------------------
+df <- cam
+
+# Replace NA with 0
+df[is.na(df)] <- 0
+
+
+#       Triangles for Drought ---------------------------------------------------
+
+#Create triangle tail with coordinate for Drought
+df$x_Drought <- df$Year+(as.numeric(df$Drought)/2)
+
+x <- c()
+
+for (n in 1:nrow(df)){
+  x <- c(x, df$Year[n])
+  x <- c(x, df$Year[n])
+  x <- c(x, df$x_Drought[n])
+}
+x
+
+y <- c()
+
+for (n in 1:nrow(df)){
+  y <- c(y, 0)
+  y <- c(y, df$Drought[n])
+  y <- c(y, 0)
+}
+y
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x,
+  y)
+
+df2 <- merge(df, positions, by = c("Year"))
+
+plot_drought <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Drought")+
+  ylim(0, 100)+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow',alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))
+
+plot_drought
+
+
+#       Triangles for Flood -----------------------------------------------------
+
+df$x_Flood <- df$Year+(as.numeric(df$Flood)/2)
+
+x2 <- c()
+
+for (n in 1:nrow(df)){
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$x_Flood[n])
+}
+x2
+
+y2 <- c()
+
+for (n in 1:nrow(df)){
+  y2 <- c(y2, 0)
+  y2 <- c(y2, df$Flood[n])
+  y2 <- c(y2, 0)
+}
+y2
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x2,
+  y2)
+
+df2 <- merge(df2, positions, by = c("Year"))
+
+plot_flood <- ggplot(df2, aes(x=Year))+
+  ylim(0, 100)+
+  ylab("Flood")+
+  geom_polygon(fill = 'orange', alpha = 0.7, 
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue',
+           alpha = 0.4,width = 0.7,
+           aes(x=Year, y=Flood))
+
+plot_flood
+
+
+#       Combined Triangles and Bar ------------------------------------------------------
+
+plot_combined <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Combined")+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'orange', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood))
+
+plot_combined
+
+
+
+
+
+
+#       Scale flood on second right axis*** ----------------------------------------
+
+# Value used to transform the data
+
+coeff_flood <- 2
+
+# A few constants
+
+climate_cam <-
+  ggplot(df2, aes(x=Year))+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'lightblue', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2*coeff_flood))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood*coeff_flood))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1),
+                     # breaks = c(2,4,6),
+                     # Features of the first axis
+                     name = ("Percentage affected\nby Drought (Yellow)"),
+                     # Add a second axis and specify its features
+                     sec.axis = sec_axis(~./coeff_flood, 
+                                         name="Percentage affected\nby Flood (Blue)",
+                                         labels = scales::percent_format(scale = 1))
+  )+
+  theme_bw()+
+  xlim(1950, 2023)+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Economical impact from Natural Disasters\nin Cameroon")
+
+```
+
+```{r Cam_Combined}
+#| warning: false
+
+climate_cam
+
+con <- conflict|>
+  filter(location=="Cameroon")
+
+
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y",
+               limits = as.Date(c("1950-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Cameroon",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ylab("\n\nConflict ID")+ xlab("Date")+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.3, 0.7))
+
+con.seg
+
+ggarrange(climate_cam, con.seg, 
+          heights = c(1.5, 1.5),
+          align = "v",
+          ncol = 1, nrow = 2)
+
+```
+
+```{r setup5 Algeria}
+#| echo: false
+#| warning: false
+#| output: false
+
+
+# Combined Algeria --------------------------------------------------------
+
+#       Assign Algeria to df ---------------------------------------------------------------
+df <- al
+
+# Replace NA with 0
+df[is.na(df)] <- 0
+
+
+#       Triangles for Drought ---------------------------------------------------
+
+#Create triangle tail with coordinate for Drought
+df$x_Drought <- df$Year+(as.numeric(df$Drought)/2)
+
+x <- c()
+
+for (n in 1:nrow(df)){
+  x <- c(x, df$Year[n])
+  x <- c(x, df$Year[n])
+  x <- c(x, df$x_Drought[n])
+}
+x
+
+y <- c()
+
+for (n in 1:nrow(df)){
+  y <- c(y, 0)
+  y <- c(y, df$Drought[n])
+  y <- c(y, 0)
+}
+y
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x,
+  y)
+
+df2 <- merge(df, positions, by = c("Year"))
+
+plot_drought <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Drought")+
+  ylim(0, 100)+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow',alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))
+
+plot_drought
+
+
+#       Triangles for Flood -----------------------------------------------------
+
+df$x_Flood <- df$Year+(as.numeric(df$Flood)/1.2)
+
+x2 <- c()
+
+for (n in 1:nrow(df)){
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$x_Flood[n])
+}
+x2
+
+y2 <- c()
+
+for (n in 1:nrow(df)){
+  y2 <- c(y2, 0)
+  y2 <- c(y2, df$Flood[n])
+  y2 <- c(y2, 0)
+}
+y2
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x2,
+  y2)
+
+df2 <- merge(df2, positions, by = c("Year"))
+
+plot_flood <- ggplot(df2, aes(x=Year))+
+  xlim(1960, 2021)+
+  ylab("Flood")+
+  geom_polygon(fill = 'lightblue', alpha = 0.7, 
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue',
+           alpha = 0.4,width = 0.7,
+           aes(x=Year, y=Flood))+
+  theme_bw()
+
+plot_flood
+
+
+#       Combined Triangles and Bar ------------------------------------------------------
+
+plot_combined <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Combined")+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'orange', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood))
+
+plot_combined
+
+
+
+#       Scale flood on second right axis*** ----------------------------------------
+
+# Value used to transform the data
+
+coeff_flood <- 1.3
+
+# A few constants
+
+climate_al <-
+  ggplot(df2, aes(x=Year))+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'lightblue', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2*coeff_flood))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood*coeff_flood))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1),
+                     #breaks = c(0, 0.5,1),
+                     # Features of the first axis
+                     name = ("Percentage affected\nby Drought (Yellow)"),
+                     # Add a second axis and specify its features
+                     sec.axis = sec_axis(~./coeff_flood, 
+                                         name="Percentage affected\nby Flood (Blue)",
+                                         labels = scales::percent_format(scale = 1))
+  )+
+  theme_bw()+
+  xlim(1950, 2023)+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Economical impact from Natural Disasters\nin Algeria")
+
+```
+
+```{r Al_Combined}
+#| warning: false
+
+climate_al
+
+con <- conflict|>
+  filter(location=="Algeria")
+
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y",
+               limits = as.Date(c("1950-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Algeria",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ylab("\nConflict ID")+ xlab("Date")+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.15, 0.7))
+
+con.seg
+
+ggarrange(climate_al, con.seg, 
+          heights = c(1.5, 1.5),
+          align = "v",
+          ncol = 1, nrow = 2)
+```
+
+```{r setup6 Ethiopia}
+#| echo: false
+#| warning: false
+#| output: false
+
+
+# Combined Ethiopia -------------------------------------------------------
+#       Assign Ethiopia to df ---------------------------------------------------------------
+df <- eth
+
+# Replace NA with 0
+df[is.na(df)] <- 0
+
+
+#       Triangles for Drought ---------------------------------------------------
+
+#Create triangle tail with coordinate for Drought
+df$x_Drought <- df$Year+(as.numeric(df$Drought)/10)
+
+x <- c()
+
+for (n in 1:nrow(df)){
+  x <- c(x, df$Year[n])
+  x <- c(x, df$Year[n])
+  x <- c(x, df$x_Drought[n])
+}
+x
+
+y <- c()
+
+for (n in 1:nrow(df)){
+  y <- c(y, 0)
+  y <- c(y, df$Drought[n])
+  y <- c(y, 0)
+}
+y
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x,
+  y)
+
+df2 <- merge(df, positions, by = c("Year"))
+
+plot_drought <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Drought")+
+  ylim(0, 100)+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow',alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))
+
+plot_drought
+
+
+#       Triangles for Flood -----------------------------------------------------
+
+df$x_Flood <- df$Year+(as.numeric(df$Flood)/2)
+
+x2 <- c()
+
+for (n in 1:nrow(df)){
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$Year[n])
+  x2 <- c(x2, df$x_Flood[n])
+}
+x2
+
+y2 <- c()
+
+for (n in 1:nrow(df)){
+  y2 <- c(y2, 0)
+  y2 <- c(y2, df$Flood[n])
+  y2 <- c(y2, 0)
+}
+y2
+
+# Create ID by year
+ids <- factor(df$Year)
+positions <- data.frame(
+  Year = rep(ids, each = 3),
+  x2,
+  y2)
+
+df2 <- merge(df2, positions, by = c("Year"))
+
+plot_flood <- ggplot(df2, aes(x=Year))+
+  xlim(1960, 2021)+
+  ylab("Flood")+
+  geom_polygon(fill = 'orange', alpha = 0.7, 
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue',
+           alpha = 0.4,width = 0.7,
+           aes(x=Year, y=Flood))+
+  theme_bw()
+
+plot_flood
+
+
+#       Combined Triangles and Bar ------------------------------------------------------
+
+plot_combined <- 
+  ggplot(df2, aes(x=Year))+
+  ylab("Combined")+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'orange', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood))
+
+plot_combined
+
+
+
+
+
+
+#       Scale flood on second right axis*** ----------------------------------------
+
+# Value used to transform the data
+
+coeff_flood <- 15
+
+# A few constants
+
+climate_eth <-
+  ggplot(df2, aes(x=Year))+
+  geom_polygon(fill = 'lemonchiffon', alpha = 0.7, 
+               aes(group = Year, x=x, y=y))+
+  geom_bar(data=df, stat="identity", fill='yellow', alpha = 0.4, width = 0.3, 
+           aes(x=Year, y=Drought))+
+  geom_polygon(fill = 'lightblue', alpha = 0.7,
+               aes(group = Year, x=x2, y=y2*coeff_flood))+
+  geom_bar(data=df, stat="identity", fill='blue', alpha = 0.4,width = 0.3,
+           aes(x=Year, y=Flood*coeff_flood))+
+  scale_y_continuous(labels = scales::percent_format(scale = 1),
+                     #breaks = c(0, 0.5,1),
+                     # Features of the first axis
+                     name = ("Percentage affected\nby Drought (Yellow)"),
+                     # Add a second axis and specify its features
+                     sec.axis = sec_axis(~./coeff_flood, 
+                                         name="Percentage affected\nby Flood (Blue)",
+                                         labels = scales::percent_format(scale = 1))
+  )+
+  theme_bw()+
+  xlim(1950, 2023)+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ggtitle("Economical impact from Natural Disasters\nin Ethiopia")
+
+
+```
+
+```{r Eth_Combined}
+#| warning: false
+
+climate_eth
+
+con <- conflict|>
+  filter(location=="Ethiopia")
+
+con.seg <- ggplot(con, aes(y=location)) +
+  geom_segment(aes(x=as.Date(start_date), xend=as.Date(ep_end_date), 
+                   y=conflict_id,yend=conflict_id, color=intensity_level),
+               size=5, alpha=1)+
+  scale_x_date(date_breaks = "10 year", date_labels ="%Y",
+               limits = as.Date(c("1950-01-01", "2023-01-01"),format="%Y"))+
+  labs(title = "Number of Natural Disasters",
+       subtitle = "in Ethiopiaia",
+       x = "Year",
+       y = "\nConflict ID")+
+  theme(plot.title    = element_text(family = "Luminari"),
+        plot.subtitle = element_text(family = "sans"),
+        axis.title.x  = element_text(family = "AppleGothic"),
+        axis.title.y  = element_text(family = "AppleGothic"),
+        axis.text.x   = element_text(family = "Optima"),
+        axis.text.y   = element_text(family = "Optima"))+
+  ylab("\nConflict ID")+ xlab("Date")+
+  theme_bw()+
+  # Legend
+  labs(fill = "Intensity Level")+
+  scale_color_manual(labels = c("Minor: 25-999\nbattle-related deaths", 
+                                "War: 1,000+\nbattle-related deaths"),
+                     name="Intensity Level",
+                     values = c("slateblue", "firebrick2"))+
+  theme(legend.position = c(0.99, 0.99))
+
+
+con.seg
+
+ggarrange(climate_eth, con.seg, 
+          heights = c(1.5, 1.5),
+          align = "v",
+          ncol = 1, nrow = 2)
+
+```

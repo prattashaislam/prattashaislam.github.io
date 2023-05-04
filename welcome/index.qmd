@@ -1,0 +1,9 @@
+---
+title: "Welcome To My Blog"
+author: "Prattasha Nawar Islam"
+date: "2022-09-12"
+---
+
+This is the first post in a Quarto blog. Welcome!
+
+![](thumbnail.jpg)
