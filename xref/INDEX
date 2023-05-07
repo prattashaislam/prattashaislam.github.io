@@ -1,0 +1,74 @@
+{
+  "about.qmd": {
+    "about.html": "c2d2c3b3"
+  },
+  "index.qmd": {
+    "index.html": "caeccfa5"
+  },
+  "research.qmd": {
+    "research.html": "0446d931"
+  },
+  "Assignment01.qmd": {
+    "Assignment01.html": "6013fda5"
+  },
+  "assignments/about.qmd": {
+    "about.html": "808be68f"
+  },
+  "assignments/assignments.qmd": {
+    "assignments.html": "f2ecb11c"
+  },
+  "assignments/posts/post-with-code/index.qmd": {
+    "index.html": "598f909a"
+  },
+  "assignments/posts/welcome/index.qmd": {
+    "index.html": "4169c812"
+  },
+  "assignments.qmd": {
+    "assignments.html": "7fa9405c"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "da2d6ae1"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "b6506063"
+  },
+  "posts/Assignment 01/index.qmd": {
+    "index.html": "d397287c"
+  },
+  "posts/Assignment 02/index.qmd": {
+    "index.html": "27d20d24"
+  },
+  "posts/Assignment 03/index.qmd": {
+    "index.html": "2ec0a936"
+  },
+  "posts/Assignment 04/index.qmd": {
+    "index.html": "04f47e73"
+  },
+  "posts/CopyOfAssignment 04/index.qmd": {
+    "index.html": "96f21d16"
+  },
+  "posts/Assignment 02/index.rmarkdown": {
+    "index.html": "e5b3e182"
+  },
+  "posts/Assignment 03/index.rmarkdown": {
+    "index.html": "6ab94d46"
+  },
+  "posts/Assignment - 5/index.qmd": {
+    "index.html": "f860f7fe"
+  },
+  "posts/Assignment - 6 and 7 (Hackathon 2)/Assignment 6 and 7.qmd": {
+    "Assignment 6 and 7.html": "3e37eafe"
+  },
+  "posts/Assignment 10/index.qmd": {
+    "index.html": "4d05bc14"
+  },
+  "posts/Assignment 8/index.qmd": {
+    "index.html": "072f7289"
+  },
+  "posts/Assignment 9/index.qmd": {
+    "index.html": "86509873"
+  },
+  "posts/EPPS 6356 Final Project/index.qmd": {
+    "index.html": "233f3e44"
+  }
+}
