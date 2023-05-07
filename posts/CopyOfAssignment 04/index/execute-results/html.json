@@ -1,0 +1,16 @@
+{
+  "hash": "8ffbf6edabe9ed9133620d2cb1ee7f7d",
+  "result": {
+    "markdown": "---\ntitle: \"Assignment 4\"\nauthor: \"Prattasha, Kaitlyn, Bel, Leonardo\"\ndate: \"2022-09-27\"\ncategories: [Code, R, Plots, Assignment]\nimage: \"plot1.gif\"\ndraft: false\nformat:\n  html:\n    code-fold: true\n    code-tools: true\nexecute:\n  echo: false\neditor_options: \n  chunk_output_type: inline\n---\n\n\n## Our team utilized Coronavirus data to create charts 1 and 2 using R graphics and ggplot2.\n\n## 1. Variable Width Column Chart\n\nHere we visualize the total number of COVID cases as of 2022-01-01 per continent or region. The width in the columns represents the number of countries within the specified continent or region. The height represents the total number of cases.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![Total cases on Jan. 1, 2022, distributed by continent](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\n## 2. Table with Embedded Charts\n\nThis table visualizes the relationship between longitude and COVID cases over time. Each embedded table represents a different continent or region. We were interested in representing the data this way to investigate the possible influence of climate on COVID cases.\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![Total cases from January to June, 2022, distributed by continent](index_files/figure-html/animation-1.gif){fig-align='center'}\n:::\n:::\n\n\n## Synergy Report\n\nOur team diligently collaborated to create these data visualizations. Prattasha and Kaitlyn took the lead on the column chart. Bel took the lead on the animated table matrix. Leonard reviewed and merged all final codes to create our blog.\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

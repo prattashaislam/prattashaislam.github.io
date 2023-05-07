@@ -1,0 +1,14 @@
+{
+  "hash": "eca8a5cac9785d8eb714fe6cf3268032",
+  "result": {
+    "markdown": "---\ntitle: \"Assignment 10\"\nauthor: \"Bel Khuu\"\ndate: \"2022-11-29\"\ncategories: [Code, R, Plots, Assignment]\nimage: \"plot.jpg\"\ndraft: false\nformat:\n  html:\n    code-fold: true\n    code-tools: true\nexecute:\n  echo: false\neditor_options: \n  chunk_output_type: inline\n---\n\n\n## Data Colloquium\n\n## 1.\n\n\n::: {.cell}\n\n:::\n\n\n``` yaml\n```\n\n## 2.\n\n\n::: {.cell}\n\n:::\n\n\n``` yaml\n```\n\n## 3.\n\n\n::: {.cell}\n\n:::\n\n\n``` yaml\n```\n\n## Synergy Report\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

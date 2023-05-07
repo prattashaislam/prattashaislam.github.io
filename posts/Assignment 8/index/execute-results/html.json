@@ -1,0 +1,14 @@
+{
+  "hash": "4103fe61e7edf0c27b0c090d9c153a2b",
+  "result": {
+    "markdown": "---\ntitle: \"Assignment 8\"\nauthor: \"Prattasha Nawar Islam\"\ndate: \"2022-11-08\"\ncategories: [Code, R, Plots, Assignment, Dashboard]\nimage: \"plot.jpg\"\ndraft: false\nformat:\n  html:\n    code-fold: true\n    code-tools: true\nexecute:\n  echo: false\neditor_options: \n  chunk_output_type: inline\n---\n\n\n## Dashboard Practice\n\n\n::: {.cell}\n\n:::\n\n\n``` yaml\n```\n\n\n::: {.cell}\n\n:::\n\n\n``` yaml\n```\n\n\n::: {.cell}\n\n:::\n\n\n``` yaml\n```\n\n## \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
